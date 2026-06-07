@@ -17,35 +17,69 @@
     {% if result %}
     <div class="results">
 
-        <h2> Security Headers</h2>
-        <ul>
-            {% for key, value in result.headers.items() %}
-            <li><strong>{{ key }}:</strong> {{ value }}</li>
-            {% endfor %}
-        </ul>
-
-        <h2> Directory Listing</h2>
-        {% if result.directories %}
-            <p class="danger">Vulnerable Directories:</p>
-            <ul>
-                {% for d in result.directories %}
-                <li>{{ d }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p class="safe">No directory listing detected</p>
+        <!-- Security Score Summary -->
+        {% if summary %}
+        <div class="summary">
+            <h2> Security Score</h2>
+            <p>Score: <strong>{{ summary.score }}%</strong> &nbsp;|&nbsp;
+                Present: <span class="safe">{{ summary.safe }}</span> &nbsp;|&nbsp;
+                Missing: <span class="danger">{{ summary.missing }}</span> &nbsp;|&nbsp;
+               Total Checked: {{ summary.total }}
+            </p>
+            <div class="score-bar">
+                <div class="score-fill" style="width: {{ summary.score }}%;
+                    background: {% if summary.score >= 70 %}#22c55e{% elif summary.score >= 40 %}#facc15{% else %}#ef4444{% endif %};">
+                </div>
+            </div>
+        </div>
         {% endif %}
 
-        <h2>Exposed Admin Pages</h2>
-        {% if result.admin_pages %}
-            <p class="danger">Accessible Admin Pages:</p>
+        <!-- Security Headers -->
+        <h2> Security Headers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Header</th>
+                    <th>Status</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, val in result.headers.items() %}
+                <tr>
+                    <td><strong>{{ key }}</strong></td>
+                    <td class="{{ val.status }}">{{ val.message }}</td>
+                    <td class="header-value">{{ val.value if val.value else "—" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Directory Listing -->
+        <h2> Directory Listing</h2>
+        {% if result.directories %}
+            <p class="danger">
+                  Vulnerable Directories Found:</p>
             <ul>
-                {% for a in result.admin_pages %}
-                <li>{{ a }}</li>
+                {% for d in result.directories %}
+                <li class="danger">{{ d }}</li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p class="safe">No exposed admin pages found</p>
+            <p class="safe"> No open directory listing detected</p>
+        {% endif %}
+
+        <!-- Admin Pages -->
+        <h2> Exposed Admin Pages</h2>
+        {% if result.admin_pages %}
+            <p class="danger"> Accessible Admin Pages:</p>
+            <ul>
+                {% for a in result.admin_pages %}
+                <li class="danger">{{ a }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="safe"> No exposed admin pages found</p>
         {% endif %}
 
     </div>
