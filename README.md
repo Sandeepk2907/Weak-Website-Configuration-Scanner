@@ -12,7 +12,7 @@ A web-based security tool built with **Flask** that scans websites for common mi
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
