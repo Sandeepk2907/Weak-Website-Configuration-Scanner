@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weak Website Configuration Scanner</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1> Weak Website Configuration Scanner</h1>
+
+    <form method="POST">
+        <input type="text" name="url" placeholder="Enter website URL (https://example.com)" required>
+        <button type="submit">Scan Website</button>
+    </form>
+
+    {% if result %}
+    <div class="results">
+
+        <h2> Security Headers</h2>
+        <ul>
+            {% for key, value in result.headers.items() %}
+            <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2> Directory Listing</h2>
+        {% if result.directories %}
+            <p class="danger">Vulnerable Directories:</p>
+            <ul>
+                {% for d in result.directories %}
+                <li>{{ d }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="safe">No directory listing detected</p>
+        {% endif %}
+
+        <h2>Exposed Admin Pages</h2>
+        {% if result.admin_pages %}
+            <p class="danger">Accessible Admin Pages:</p>
+            <ul>
+                {% for a in result.admin_pages %}
+                <li>{{ a }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="safe">No exposed admin pages found</p>
+        {% endif %}
+
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
