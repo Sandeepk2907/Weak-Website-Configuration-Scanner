@@ -1,18 +1,18 @@
-# 🔍 Weak Website Configuration Scanner
+# Weak Website Configuration Scanner
 
 A simple web-based security tool built with **Flask** that scans websites for common misconfigurations — including missing security headers, exposed directories, and accessible admin pages.
 
 ---
 
-## 📸 Features
+##  Features
 
-- ✅ **Security Header Check** — Detects missing HTTP security headers like `Content-Security-Policy` and `Strict-Transport-Security`
-- 📁 **Directory Listing Detection** — Checks for exposed directories like `/uploads/`, `/backup/`, `/files/`
-- 🔐 **Admin Page Exposure** — Scans for publicly accessible admin paths like `/admin`, `/login`, `/dashboard`
+-  **Security Header Check** — Detects missing HTTP security headers like `Content-Security-Policy` and `Strict-Transport-Security`
+-  **Directory Listing Detection** — Checks for exposed directories like `/uploads/`, `/backup/`, `/files/`
+-  **Admin Page Exposure** — Scans for publicly accessible admin paths like `/admin`, `/login`, `/dashboard`
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -22,7 +22,7 @@ A simple web-based security tool built with **Flask** that scans websites for co
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 CNS/
@@ -66,17 +66,17 @@ http://127.0.0.1:5000
 
 ---
 
-## 🚀 How to Use
+##  How to Use
 
 1. Enter a website URL in the input box (e.g., `https://example.com`)
 2. Click **Scan Website**
 3. View the results:
-   - 🟢 **Safe** — header/config is properly set
-   - 🔴 **Missing / Vulnerable** — potential misconfiguration detected
+   -  **Safe** — header/config is properly set
+   -  **Missing / Vulnerable** — potential misconfiguration detected
 
 ---
 
-## 📋 What Gets Scanned
+##  What Gets Scanned
 
 ### Security Headers
 | Header | Purpose |
@@ -98,7 +98,7 @@ Checks if these pages are publicly accessible:
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 > This tool is intended for **educational purposes only**.  
 > Only scan websites you **own** or have **explicit permission** to test.  
@@ -106,7 +106,7 @@ Checks if these pages are publicly accessible:
 
 ---
 
-## 📦 Requirements
+## Requirements
 
 ```
 flask
@@ -120,12 +120,12 @@ pip install -r requirements.txt
 
 ---
 
-## 📄 License
+## License
 
 This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-## 🙋 Author
+## Author
 
 Made for learning web security concepts as part of a CNS (Computer and Network Security) project.
