@@ -1,18 +1,19 @@
-# Weak Website Configuration Scanner
+#  Weak Website Configuration Scanner
 
-A web-based security tool built with **Flask** that scans websites for common misconfigurations — including missing security headers, exposed directories, and accessible admin pages.
+A Flask-based web tool that scans any website for common security misconfigurations — including missing security headers, open directory listings, and exposed admin pages — and gives an overall security score.
 
 ---
 
 ##  Features
 
--  **Security Header Check** — Detects missing HTTP security headers like `Content-Security-Policy` and `Strict-Transport-Security`
--  **Directory Listing Detection** — Checks for exposed directories like `/uploads/`, `/backup/`, `/files/`
--  **Admin Page Exposure** — Scans for publicly accessible admin paths like `/admin`, `/login`, `/dashboard`
+-  Checks **14 security headers** and explains what each one does
+-  Generates a **Security Score (%)** with a color-coded progress bar
+-  Detects **open directory listings** (e.g. `/uploads/`, `/backup/`)
+-  Scans for **exposed admin pages** (e.g. `/admin`, `/wp-admin`)
+-  Clean dark-themed UI
 
 ---
-
-## Tech Stack
+## 🛠️ Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -21,92 +22,79 @@ A web-based security tool built with **Flask** that scans websites for common mi
 | HTTP Requests | `requests` library |
 
 ---
+##  Security Headers Checked
+
+| Header | Purpose |
+|--------|---------|
+| `Content-Security-Policy` | Blocks harmful scripts (XSS attacks) |
+| `Strict-Transport-Security` | Forces HTTPS connections |
+| `X-Frame-Options` | Prevents Clickjacking |
+| `X-Content-Type-Options` | Stops MIME type sniffing |
+| `Referrer-Policy` | Controls referrer info leakage |
+| `Permissions-Policy` | Restricts camera, mic, GPS access |
+| `X-XSS-Protection` | Enables browser XSS filter |
+| `Cross-Origin-Opener-Policy` | Isolates browsing context |
+| `Cross-Origin-Resource-Policy` | Controls cross-origin resource sharing |
+| `Cross-Origin-Embedder-Policy` | Prevents unauthorized cross-origin embeds |
+| `Cache-Control` | Prevents sensitive data caching |
+| `Clear-Site-Data` | Clears browser data on logout |
+| `X-Permitted-Cross-Domain-Policies` | Restricts Flash/PDF cross-domain requests |
+| `Expect-CT` | Enforces Certificate Transparency |
+
+---
 
 ##  Project Structure
 
 ```
 CNS/
-│
-├── app.py              # Flask backend — scanning logic & routes
-├── requirements.txt    # Python dependencies
+├── app.py               # Flask backend — all scanning logic
+├── requirements.txt     # Python dependencies
 ├── templates/
-│   └── index.html      # Frontend UI (Jinja2 template)
+│   └── index.html       # Frontend UI (Jinja2 template)
 └── static/
-    └── style.css       # Styling
+    └── style.css        # Dark theme styles
 ```
 
 ---
 
-## Installation & Setup
+##  Installation & Setup
 
 ### 1. Clone the Repository
-
 ```bash
-git clone https://github.com/your-username/weak-website-scanner.git
-cd weak-website-scanner
+git clone https://github.com/your-username/website-config-scanner.git
+cd website-config-scanner
 ```
 
 ### 2. Install Dependencies
-
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 3. Run the App
-
 ```bash
 python app.py
 ```
 
 ### 4. Open in Browser
-
 ```
 http://127.0.0.1:5000
 ```
 
 ---
 
-##  How to Use
+##  Usage
 
-1. Enter a website URL in the input box (e.g., `https://example.com`)
+1. Enter any website URL in the input box (e.g. `https://example.com`)
 2. Click **Scan Website**
-3. View the results:
-   -  **Safe** — header/config is properly set
-   -  **Missing / Vulnerable** — potential misconfiguration detected
+3. View results:
+   - **Security Score** — overall percentage with color bar
+   - **Headers Table** — each header's status and current value
+   - **Directory Listing** — any open/exposed directories
+   - **Admin Pages** — any accessible admin or login pages
 
 ---
 
-##  What Gets Scanned
-
-### Security Headers
-| Header | Purpose |
-|--------|---------|
-| `Content-Security-Policy` | Prevents harmful/injected scripts |
-| `Strict-Transport-Security` | Forces HTTPS connections |
-
-### Directory Listing
-Checks if these paths are openly browsable:
-- `/uploads/`
-- `/backup/`
-- `/files/`
-
-### Admin Pages
-Checks if these pages are publicly accessible:
-- `/admin`
-- `/login`
-- `/dashboard`
-
----
-
-## Disclaimer
-
-> This tool is intended for **educational purposes only**.  
-> Only scan websites you **own** or have **explicit permission** to test.  
-> Unauthorized scanning of websites may be **illegal**.
-
----
-
-## Requirements
+##  Requirements
 
 ```
 flask
@@ -120,12 +108,15 @@ pip install -r requirements.txt
 
 ---
 
-## License
+##  Disclaimer
 
-This project is open-source and available under the [MIT License](LICENSE).
+This tool is intended for **educational purposes** and **authorized security testing only**.  
+Do **not** scan websites you do not own or have explicit permission to test.  
+Unauthorized scanning may be **illegal** in your country.
+
 
 ---
 
-## Author
+##  License
 
-Made for learning web security concepts as part of a CNS (Computer and Network Security) project.
+This project is open-source and available under the [MIT License](LICENSE).
