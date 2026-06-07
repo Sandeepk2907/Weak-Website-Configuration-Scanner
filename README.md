@@ -1,6 +1,6 @@
 # Weak Website Configuration Scanner
 
-A simple web-based security tool built with **Flask** that scans websites for common misconfigurations — including missing security headers, exposed directories, and accessible admin pages.
+A web-based security tool built with **Flask** that scans websites for common misconfigurations — including missing security headers, exposed directories, and accessible admin pages.
 
 ---
 
@@ -37,7 +37,7 @@ CNS/
 
 ---
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 ### 1. Clone the Repository
 
